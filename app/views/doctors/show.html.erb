@@ -6,3 +6,11 @@
   <p>University where they got their Doctorate: <%= @doctor.university %></p>
   <p>Practicing Hospital: <%= @doctor.hospital.name %></p>
 </div>
+
+<div id="doctor-<%= @doctor.id %>-patients">
+  <ul>
+    <% @doctor.patients.each do |patient| %>
+      <li><%= patient.name %></li>
+    <% end %>
+  </ul>
+</div>
