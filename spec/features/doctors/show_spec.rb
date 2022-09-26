@@ -25,7 +25,7 @@ RSpec.describe "Doctors Show Page" do
       it "I see all of that doctor's information including: name, specialty, university" do
         visit doctor_path(@doctor_1)
 
-        within("#doctor_info") do
+        within("#doctor-info") do
           expect(page).to have_content(@doctor_1.name)
           expect(page).to have_content(@doctor_1.specialty)
           expect(page).to have_content(@doctor_1.university)
