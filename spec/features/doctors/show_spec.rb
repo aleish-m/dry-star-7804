@@ -43,6 +43,18 @@ RSpec.describe "Doctors Show Page" do
           expect(page).to have_content(@hospital.name)
         end
       end
+
+      it "I see the names of all of the patients this doctor has" do
+        visit doctor_path(@doctor_1)
+
+        within("#doctor-#{@doctor_1.id}-patients") do
+          expect(page).to have_content(@patient_1.name)
+          expect(page).to have_content(@patient_2.name)
+          expect(page).to have_content(@patient_3.name)
+        end
+
+        expect(page).to_not have_content(@patient_4.name)
+      end
     end
   end
 end
