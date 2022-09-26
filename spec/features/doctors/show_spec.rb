@@ -35,6 +35,14 @@ RSpec.describe "Doctors Show Page" do
         expect(page).to_not have_content(@doctor_2.specialty)
         expect(page).to_not have_content(@doctor_2.university)
       end
+
+      it "I see the name of the hospital where this doctor works" do
+        visit doctor_path(@doctor_1)
+
+        within("#doctor-info") do
+          expect(page).to have_content(@hospital.name)
+        end
+      end
     end
   end
 end
