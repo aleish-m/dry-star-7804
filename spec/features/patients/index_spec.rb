@@ -33,12 +33,12 @@ RSpec.describe "Patient Index Page" do
       it "I see the names are in ascending alphabetical order (A - Z, you do not need to account for capitalization)" do
         visit patients_path
 
-        expect(@patient_1).to appear_before(@patient_3)
-        expect(@patient_1).to appear_before(@patient_4)
-        expect(@patient_1).to appear_before(@patient_6)
-        expect(@patient_6).to appear_before(@patient_3)
-        expect(@patient_6).to appear_before(@patient_4)
-        expect(@patient_3).to appear_before(@patient_4)
+        expect(@patient_1.name).to appear_before(@patient_3.name)
+        expect(@patient_1.name).to appear_before(@patient_4.name)
+        expect(@patient_1.name).to appear_before(@patient_6.name)
+        expect(@patient_6.name).to appear_before(@patient_3.name)
+        expect(@patient_6.name).to appear_before(@patient_4.name)
+        expect(@patient_3.name).to appear_before(@patient_4.name)
       end
     end
   end
