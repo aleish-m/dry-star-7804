@@ -5,7 +5,7 @@
     <div id="hospital-doctors">
       <ul>
         
-        <% @hospital.doctors.each do |doctor| %>
+        <% @hospital.doctors_caseload_sort.each do |doctor| %>
           <div id="doctor-<%= doctor.id %>">
           <li><%= doctor.name %> - Caseload: <%= doctor.patients.count %></li>
           </div>
