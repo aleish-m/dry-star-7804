@@ -12,7 +12,10 @@
   <h2>Caseload:</h2>
   <ul>
     <% @doctor.patients.each do |patient| %>
-      <li><%= patient.name %></li>
+      <div id="patient-<%= patient.id %>"> 
+        <li><%= patient.name %></li>
+        <%= button_to "Remove from Caseload", doctor_patient_path(@doctor, patient), method: :delete %>
+      </div>
     <% end %>
   </ul>
 </div>

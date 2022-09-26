@@ -27,37 +27,41 @@ RSpec.describe "Remove a Patient from a Doctor" do
 
         within("#doctor-#{@doctor_1.id}-patients") do
           within("#patient-#{@patient_1.id}") do
-            expect(page).to have_button("Remove for Caseload")
+            expect(page).to have_button("Remove from Caseload")
           end
           within("#patient-#{@patient_2.id}") do
-            expect(page).to have_button("Remove for Caseload")
+            expect(page).to have_button("Remove from Caseload")
           end
           within("#patient-#{@patient_3.id}") do
-            expect(page).to have_button("Remove for Caseload")
+            expect(page).to have_button("Remove from Caseload")
+          end
+        end
+      end
+
+      it "When I click that button for one patient I'm brought back to the Doctor's show page" do
+        visit doctor_path(@doctor_1)
+
+        within("#doctor-#{@doctor_1.id}-patients") do
+          within("#patient-#{@patient_1.id}") do
+            click_button"Remove from Caseload"
           end
         end
 
-        it "When I click that button for one patient I'm brought back to the Doctor's show page" do
-          visit doctor_path(@doctor_1)
+        expect(current_path).to eq(doctor_path(@doctor_1))
+      end
 
-          within("#doctor-#{@doctor_1.id}-patients") do
-            within("#patient-#{@patient_1.id}") do
-              click_button"Remove for Caseload"
-            end
+      it "I no longer see that patient's name listed" do
+
+        visit doctor_path(@doctor_1)
+
+        expect(page).to have_content(@patient_1.name)
+
+          within("#patient-#{@patient_1.id}") do
+            click_button"Remove from Caseload"
           end
 
-          expect(current_path).to eq(doctor_path(@doctor_1))
-        end
+        expect(page).to_not have_content(@patient_1.name)
 
-        it "I no longer see that patient's name listed"
-
-          visit doctor_path(@doctor_1)
-
-          expect(page).to have_content(@patient_1.name)
-            within("#patient-#{@patient_1.id}") do
-              click_button"Remove for Caseload"
-            end
-          expect(page).to_not have_content(@patient_1.name)
       end
     end
   end
